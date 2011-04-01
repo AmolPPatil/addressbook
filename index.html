@@ -1,63 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
-		<title>Training App</title>
-		<link rel="stylesheet" href="assets/css/master.css" type="text/css" media="screen" />
-		
-		<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/xui.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/LawnchairAdaptorHelpers.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/DOMStorageAdaptor.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/WebkitSQLiteAdaptor.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/dsl.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
-		
-	</head>
-	<body>
- 		<div id="title_bar">Phone<strong>Gap</strong> Training App</div>
+<head>
+<title>Contacts</title>
+<script type="text/javascript" src="lib/touch/sencha-touch.js"></script>
+<link rel="stylesheet" href="lib/touch/resources/css/sencha-touch.css"
+	type="text/css" />
+<link rel="stylesheet" href="lib/touch/resources/css/sink.css"
+	type="text/css" />
+<link rel="stylesheet" href="lib/touch/resources/css/codebox.css"
+	type="text/css" />
 
-		<div id="welcome" class="view">
-		  <div class="app_button" id="map_button">Show My Location</div>
-  	      <div class="app_button" id="settings_button">Settings</div>
-		</div>
+<!--    
+<script type="text/javascript" src="phonegap.js"></script>
+-->
+<script type="text/javascript" src="phonegap.0.9.4.js"></script>
 
-		<div id="map" class="view">
-		  <div class="map_image">
-              <img id="static_map" src="assets/img/staticmap.png">
-		  </div>
-		  <p>This is where you are</p>
-		  <div class="app_button" id="welcome_button">Go Back</div>
-		</div>
+<script type="text/javascript" src="app/app.js"></script>
 
-		<div id="settings" class="view">
-		  <form id="settings_form">
-		    <fieldset>
-		      <legend>Map Type</legend>
-			  <input type="radio" name="map" value="roadmap" checked>Road Map<br/>
-		      <input type="radio" name="map" value="satellite">Satellite<br/>
-		      <input type="radio" name="map" value="terrain">Terrain<br/>
-		      <input type="radio" name="map" value="hybrid">Hybrid<br/>
-		    </fieldset>
-		    <fieldset>
-		      <legend>Zoom Level</legend>
-  		      <input type="radio" name="zoom" value="10">Super Far<br/>
-  		      <input type="radio" name="zoom" value="12">Far<br/>
-  		      <input type="radio" name="zoom" value="15" checked>Normal<br/>
-  		      <input type="radio" name="zoom" value="18">Close<br/>
-  		      <input type="radio" name="zoom" value="20">Super Close<br/>
-  		     </fieldset>
-		      <button id="save_button">Save</button>
-	      </form>
-		</div>
+<script type="text/javascript" src="app/models/Contact.js"></script>
 
-	</body>
+<script type="text/javascript" src="app/views/Viewport.js"></script>
+<script type="text/javascript" src="app/views/ContactsList.js"></script>
+<script type="text/javascript" src="app/views/ContactDetail.js"></script>
+<script type="text/javascript" src="app/views/ContactForm.js"></script>
+
+<script type="text/javascript" src="app/controllers/contacts.js"></script>
+
+
+<script type="text/javascript">
+	function onLoad() {
+		document.addEventListener("deviceready", app.mainLaunch, false);
+	}
+</script>
+
+<style>
+h4 {
+	background: #F7F7F7;
+	font-weight: bold !important;
+	margin: 0.5em 0 0 !important;
+	padding: 5px;
+	border: solid #DDD;
+	border-width: 1px 0;
+}
+
+.field {
+	background: #FFFFFF;
+	font-size: 120%;
+	text-indent: -100px;
+	border-bottom: 1px solid #DDD;
+	padding: 0.4em 0.4em 0.4em 100px;
+}
+
+.field .label {
+	display: inline-block;
+	color: #666;
+	text-align: right;
+	text-transform: capitalize;
+	width: 100px;
+	padding-right: 1em;
+}
+</style>
+
+</head>
+
+<body onload="onLoad();"></body>
 </html>
