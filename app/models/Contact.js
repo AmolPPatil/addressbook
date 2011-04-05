@@ -5,7 +5,8 @@ Ext.data.ProxyMgr.registerType("contactstorage", Ext.extend(Ext.data.Proxy, {
 
 	read : function(operation, callback, scope) {
 		var thisProxy = this;
-		navigator.service.contacts.find( [ 'id', 'name', 'emails',
+//		navigator.notification.alert('You are the winner!', 'Game Over', 'Done');
+		navigator.service.contacts.find([ 'id', 'name', 'emails',
 				'phoneNumbers', 'addresses', 'birthday' ], function(
 				deviceContacts) {
 			// loop over deviceContacts and create Contact model instances
@@ -28,7 +29,7 @@ Ext.data.ProxyMgr.registerType("contactstorage", Ext.extend(Ext.data.Proxy, {
 				if (deviceContact.name.hasOwnProperty('familyName')) {
 					familyname = deviceContact.name.familyName;
 				}
-				var contact = new thisProxy.model( {
+				var contact = new thisProxy.model({
 					id : deviceContact.id,
 					givenName : deviceContact.name.givenName,
 					familyName : familyname,
@@ -42,7 +43,7 @@ Ext.data.ProxyMgr.registerType("contactstorage", Ext.extend(Ext.data.Proxy, {
 			}
 
 			// return model instances in a resultset
-			operation.resultSet = new Ext.data.ResultSet( {
+			operation.resultSet = new Ext.data.ResultSet({
 				records : contacts,
 				total : contacts.length,
 				loaded : true
@@ -73,6 +74,7 @@ Ext.data.ProxyMgr.registerType("contactstorage", Ext.extend(Ext.data.Proxy, {
 		var contact = operation.records[0].data;
 		deviceContact.name.givenName = contact.givenName;
 		deviceContact.name.familyName = contact.familyName;
+		deviceContact.birthday = contact.birthday;
 
 		// save back via PhoneGap
 		var thisProxy = this;
@@ -109,7 +111,7 @@ app.models.Contact = Ext.regModel("app.models.Contact", {
 		type : "auto"
 	}, {
 		name : "birthday",
-		dateFormat: "m-d-Y",
+		dateFormat : "m-d-Y",
 		type : "date"
 	}, {
 		name : "phoneNumbers",
@@ -120,7 +122,7 @@ app.models.Contact = Ext.regModel("app.models.Contact", {
 	}
 });
 
-app.stores.contacts = new Ext.data.Store( {
+app.stores.contacts = new Ext.data.Store({
 	model : "app.models.Contact",
 	// sorters : 'familyName',
 	sorters : 'givenName',
